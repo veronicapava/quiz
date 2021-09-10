@@ -1,18 +1,17 @@
-
 import { useState, useEffect } from "react"
 import Question from "../Partbypart/Question"
 
 
 function Quiz() {
-    let random = 3
     let round = 5
+    const getRandomInt = max => Math.floor(Math.random() * max)
 
-    const filtradoPorDificultad = q => q => q.dificultad == round
-    const randomQuestion = q => q.dificultad == random
-
-    const preguntaUnica = (array) => array.filter(filtradoPorDificultad).filter(randomQuestion)
-
-
+    const getQuestion = (allQuestion, round) => {
+        let preguntasDeRonda = allQuestion.filter(q => q.dificultad == round)
+        let ids = preguntasDeRonda.map(x => x.id)
+        let randomId = getRandomInt(ids.length)
+        return preguntasDeRonda[randomId]
+    }
 
 
     const [questions, setQuestion] = useState([])
@@ -25,28 +24,17 @@ function Quiz() {
     }, [])
 
 
-
-
     return (
         <>
             <div className="quiz">
                 <h1>Quiz</h1>
                 <h1> Ronda {round} </h1>
 
-                {
-                    preguntaUnica(questions).map(q =>
-                        <Question
-                            key={q.id}
-                            {...q}
-                        />
+                <Question
+                    {...getQuestion(questions, round)}
+                />
 
-                    )
-                }
-
-
-
-
-                <button>Finalizar juego</button>
+                < button > Finalizar juego</button>
             </div>
 
         </>
@@ -54,6 +42,3 @@ function Quiz() {
 }
 
 export default Quiz;
-
-
-                // key={preguntaUnica(questions)[0].id}

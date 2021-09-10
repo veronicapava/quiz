@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import Question from "../Partbypart/Question"
+import QuizContext from "../Provider/Contexts"
 
 
 function Quiz() {
@@ -15,6 +16,7 @@ function Quiz() {
 
 
     const [questions, setQuestion] = useState([])
+    const { gameState, setGameState } = useContext(QuizContext)
 
 
     useEffect(() => {
@@ -34,7 +36,9 @@ function Quiz() {
                     {...getQuestion(questions, round)}
                 />
 
-                < button > Finalizar juego</button>
+                < button onClick={() => {
+                    setGameState("final")
+                }} > Finalizar juego</button>
             </div>
 
         </>

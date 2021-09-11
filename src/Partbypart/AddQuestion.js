@@ -16,6 +16,9 @@ const AddQuestion = () => {
     const [respuesta, setCorrecta] = useState("opcionA")
     const [dificultad, setDificultad] = useState("1")
 
+    const [posteando, setPostingState] = useState(false)
+
+
     const postear = (e) => {
         e.preventDefault()
         const preguntas = {
@@ -27,7 +30,21 @@ const AddQuestion = () => {
             respuesta,
             dificultad
         }
-        console.log(preguntas)
+
+        setPostingState(true)
+
+        fetch("http://localhost:3001/preguntas", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(preguntas)
+        }).then(() => setPostingState(false))
+
+
+        // .then(response => response.json())
+        // .then(data => setQuestion(data))
+
+
+
     }
 
 
@@ -98,10 +115,8 @@ const AddQuestion = () => {
                 <br />
                 <br />
 
-                <input type="submit" value="Submit"></input>
-
-
-
+                {!posteando && <button>Guardar pregunta</button>}
+                {posteando && <button disabled>Guardando pregunta...</button>}
 
             </form>
 

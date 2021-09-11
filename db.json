@@ -1,5 +1,6 @@
 {
-  "preguntas": [
+  "preguntas": [],
+  "preguntasDefault": [
     {
       "id": 1,
       "pregunta": "¿Cuál es la capital de Colombia?",

@@ -16,7 +16,6 @@ function Menuprincipal(props) {
 
     const submit = (e) => {
         e.preventDefault()
-        console.log("e", e)
         setSubmit(true)
         props.guardarNombre(nombre)
     }

@@ -8,11 +8,11 @@ const AddQuestion = () => {
 
 
 
-    const [pregunta, setPregunta] = useState()
-    const [resA, setResponseA] = useState()
-    const [resB, setResponseB] = useState()
-    const [resC, setResponseC] = useState()
-    const [resD, setResponseD] = useState()
+    const [pregunta, setPregunta] = useState("")
+    const [resA, setResponseA] = useState("")
+    const [resB, setResponseB] = useState("")
+    const [resC, setResponseC] = useState("")
+    const [resD, setResponseD] = useState("")
     const [respuesta, setCorrecta] = useState("opcionA")
     const [dificultad, setDificultad] = useState("1")
 
@@ -28,7 +28,6 @@ const AddQuestion = () => {
             opcionC: resC,
             opcionD: resD,
             respuesta,
-            dificultad
         }
 
         setPostingState(true)
@@ -37,7 +36,17 @@ const AddQuestion = () => {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(preguntas)
-        }).then(() => setPostingState(false))
+        }).then(() => {
+            setPregunta("")
+            setResponseA("")
+            setResponseB("")
+            setResponseC("")
+            setResponseD("")
+            setCorrecta("opcionA")
+            setDificultad("1")
+
+            setPostingState(false)
+        })
 
     }
 

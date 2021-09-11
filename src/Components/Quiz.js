@@ -15,7 +15,7 @@ const Quiz = props => {
     const [questions, setQuestion] = useState([])
     const { gameState, setGameState } = useContext(QuizContext)
     useEffect(() => {
-        fetch("http://localhost:3001/preguntas")
+        fetch("http://localhost:3001/preguntasDefault")
             .then(response => response.json())
             .then(data => setQuestion(data))
     }, [])

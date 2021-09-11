@@ -3,6 +3,7 @@ import Menuprincipal from "./Components/Menuprincipal";
 import Quiz from "./Components/Quiz";
 import Final from "./Components/Final";
 import QuizContext from "./Provider/Contexts"
+import AddQuestion from "./Partbypart/AddQuestion"
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         {gameState === "menu" && <Menuprincipal />}
         {gameState === "quiz" && <Quiz />}
         {gameState === "final" && <Final />}
+        {gameState === "addquestion" && <AddQuestion />}
       </QuizContext.Provider>
 
     </div>

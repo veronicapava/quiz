@@ -6,7 +6,12 @@ function Menuprincipal() {
     const { gameState, setGameState } = useContext(QuizContext)
     return (
         <div className="menu">
-            <button>Crear preguntas</button>
+            <button
+                onClick={() => {
+                    setGameState("addquestion")
+                }}
+            >Crear preguntas</button>
+
             <button
                 onClick={() => {
                     setGameState("quiz")

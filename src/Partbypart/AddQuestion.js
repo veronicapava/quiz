@@ -39,12 +39,6 @@ const AddQuestion = () => {
             body: JSON.stringify(preguntas)
         }).then(() => setPostingState(false))
 
-
-        // .then(response => response.json())
-        // .then(data => setQuestion(data))
-
-
-
     }
 
 

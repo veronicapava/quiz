@@ -7,6 +7,10 @@ const AddQuestion = (props) => {
 
     const { setGameState } = useContext(QuizContext)
 
+    const preguntasGuardadasCero = { d1: 0, d2: 0, d3: 0, d4: 0, d5: 0, total: 0 }  //d1 corresponde a dificulta 1, etc
+
+    const [preguntasGuardadas, setPreguntasGuardadas] = useState(preguntasGuardadasCero)
+
     const [pregunta, setPregunta] = useState("")
     const [resA, setResponseA] = useState("")
     const [resB, setResponseB] = useState("")
@@ -31,12 +35,7 @@ const AddQuestion = (props) => {
         }
 
         setPostingState(true)
-
-        fetch("http://localhost:3001/preguntas", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(preguntas)
-        }).then(() => {
+        const resetarInputs = () => {
             setPregunta("")
             setResponseA("")
             setResponseB("")
@@ -44,9 +43,30 @@ const AddQuestion = (props) => {
             setResponseD("")
             setCorrecta("opcionA")
             setDificultad("1")
+        }
 
+        const contadorDePreguntas = (dif) => {
+            let d1 = dif === 1 ? preguntasGuardadas.d1 + 1 : preguntasGuardadas.d1
+            let d2 = dif === 2 ? preguntasGuardadas.d2 + 1 : preguntasGuardadas.d2
+            let d3 = dif === 3 ? preguntasGuardadas.d3 + 1 : preguntasGuardadas.d3
+            let d4 = dif === 4 ? preguntasGuardadas.d4 + 1 : preguntasGuardadas.d4
+            let d5 = dif === 5 ? preguntasGuardadas.d5 + 1 : preguntasGuardadas.d5
+            let total = d1 + d2 + d3 + d4 + d5
+            return { d1, d2, d3, d4, d5, total }
+        }
+
+        fetch("http://localhost:3001/preguntas", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(preguntas)
+        }).then(() => {
+            resetarInputs()
             props.cambiarTipoDePreguntas()
             setPostingState(false)
+
+            let conteoPreguntas = contadorDePreguntas(Number(dificultad))
+            setPreguntasGuardadas(conteoPreguntas)
+
         })
 
     }
@@ -57,43 +77,31 @@ const AddQuestion = (props) => {
             <form onSubmit={postear}>
 
                 <label>Escribe aquí la pregunta:</label>
-                <input type="text"
-                    required
-                    value={pregunta}
-                    onChange={(e) => setPregunta(e.target.value)}
-                />
+                <input type="text" required value={pregunta}
+                    onChange={(e) => setPregunta(e.target.value)} />
                 <br />
 
                 <label>Escribe aquí la opción A:</label>
-                <input type="text"
-                    required
-                    value={resA}
+                <input type="text" required value={resA}
                     onChange={(e) => setResponseA(e.target.value)} />
                 <br />
 
                 <label>Escribe aquí la opción B:</label>
-                <input type="text"
-                    required
-                    value={resB}
+                <input type="text" required value={resB}
                     onChange={(e) => setResponseB(e.target.value)} />
                 <br />
                 <label>Escribe aquí la opción c:</label>
-                <input type="text"
-                    required
-                    value={resC}
+                <input type="text" required value={resC}
                     onChange={(e) => setResponseC(e.target.value)} />
                 <br />
                 <label>Escribe aquí la opción D:</label>
-                <input type="text"
-                    required
-                    value={resD}
+                <input type="text" required value={resD}
                     onChange={(e) => setResponseD(e.target.value)} />
+                <br />
 
                 <br />
-                <br />
                 <label>Marque la respuesta correcta:</label>
-                <select
-                    value={respuesta}
+                <select value={respuesta}
                     onChange={(e) => setCorrecta(e.target.value)}
                 >
                     <option value="opcionA"> Opción A</option>
@@ -105,8 +113,7 @@ const AddQuestion = (props) => {
                 <br />
                 <br />
                 <label>Seleccione la dificultad de esta pregunta</label>
-                <select
-                    value={dificultad}
+                <select value={dificultad}
                     onChange={(e) => setDificultad(e.target.value)}
                 >
                     <option value="1"> Nivel 1</option>
@@ -125,9 +132,21 @@ const AddQuestion = (props) => {
             </form>
 
 
-            < button onClick={() => {
-                setGameState("menu")
-            }} >No mas preguntas</button>
+            {preguntasGuardadas.total > 25 && < button onClick={() => { setGameState("menu") }} >No mas preguntas</button>}
+            < button onClick={() => { setGameState("menu") }} > Cancelar </button>
+
+            <aside>
+                <h4>Inventario de Preguntas</h4>
+                <label>Dificultad 1: {preguntasGuardadas.d1}</label>
+                <label>Dificultad 2: {preguntasGuardadas.d2}</label>
+                <label>Dificultad 3: {preguntasGuardadas.d3}</label>
+                <label>Dificultad 4: {preguntasGuardadas.d4}</label>
+                <label>Dificultad 5: {preguntasGuardadas.d5}</label>
+                <label> Total: {preguntasGuardadas.total}</label>
+            </aside>
+
+
+
         </>
     )
 }

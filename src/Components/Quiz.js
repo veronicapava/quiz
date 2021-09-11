@@ -1,10 +1,13 @@
 import { useState, useEffect, useContext } from "react"
 import Question from "../Partbypart/Question"
 import QuizContext from "../Provider/Contexts"
+import Header from "./Header"
 
 
 function Quiz() {
-    let round = 5
+
+    let [round, updateRound] = useState(1)
+
     const getRandomInt = max => Math.floor(Math.random() * max)
 
     const getQuestion = (allQuestion, round) => {
@@ -29,12 +32,14 @@ function Quiz() {
     return (
         <>
             <div className="quiz">
-                <h1>Quiz</h1>
-                <h1> Ronda {round} </h1>
+                <Header
+                    round={round}
+                />
 
                 <Question
                     {...getQuestion(questions, round)}
                 />
+
 
                 < button onClick={() => {
                     setGameState("final")

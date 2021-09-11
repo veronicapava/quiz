@@ -6,8 +6,12 @@ function Final() {
     const { gameState, setGameState } = useContext(QuizContext)
     return (
         <div className="menu">
-            <h2>Score</h2>
-
+            <h2>Score: $
+            </h2>
+            <button
+                onClick={() => {
+                    setGameState("menu")
+                }}>Restart</button>
         </div>
     )
 }

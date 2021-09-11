@@ -14,8 +14,11 @@ const Quiz = props => {
     }
     const [questions, setQuestion] = useState([])
     const { setGameState } = useContext(QuizContext)
+
     useEffect(() => {
-        fetch("http://localhost:3001/preguntasDefault")
+        const baseUrl = "http://localhost:3001/"
+        const endPoint = props.preguntasPersonalizadas ? "preguntas" : "preguntasDefault"
+        fetch(baseUrl + endPoint)
             .then(response => response.json())
             .then(data => setQuestion(data))
     }, [])
@@ -48,9 +51,9 @@ const Quiz = props => {
 }
 
 const mapStateToProps = state => ({
-    rondaCounter: state.ronda
+    rondaCounter: state.ronda,
+    preguntasPersonalizadas: state.preguntasPersonalizadas
 })
 const mapDispatchToProps = () => ({})
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Quiz);

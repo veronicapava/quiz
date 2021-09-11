@@ -1,8 +1,9 @@
 import { useState, useContext } from "react"
 import QuizContext from "../Provider/Contexts"
+import { connect } from "react-redux"
+import { irPreguntasPersonalizadas } from "../redux/actionCreators"
 
-
-const AddQuestion = () => {
+const AddQuestion = (props) => {
 
     const { setGameState } = useContext(QuizContext)
 
@@ -26,6 +27,7 @@ const AddQuestion = () => {
             opcionC: resC,
             opcionD: resD,
             respuesta,
+            dificultad: Number(dificultad)
         }
 
         setPostingState(true)
@@ -43,6 +45,7 @@ const AddQuestion = () => {
             setCorrecta("opcionA")
             setDificultad("1")
 
+            props.cambiarTipoDePreguntas()
             setPostingState(false)
         })
 
@@ -129,4 +132,14 @@ const AddQuestion = () => {
     )
 }
 
-export default AddQuestion;
+const mapStateToProps = state => ({})
+
+const mapDispatchToProps = dispatch => ({
+    cambiarTipoDePreguntas() {
+        dispatch(irPreguntasPersonalizadas())
+    }
+})
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddQuestion);

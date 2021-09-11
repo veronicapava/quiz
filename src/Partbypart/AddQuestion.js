@@ -4,9 +4,7 @@ import QuizContext from "../Provider/Contexts"
 
 const AddQuestion = () => {
 
-    const { gameState, setGameState } = useContext(QuizContext)
-
-
+    const { setGameState } = useContext(QuizContext)
 
     const [pregunta, setPregunta] = useState("")
     const [resA, setResponseA] = useState("")
@@ -64,26 +62,26 @@ const AddQuestion = () => {
                 <br />
 
                 <label>Escribe aquí la opción A:</label>
-                <input type="text" required
+                <input type="text"
                     required
                     value={resA}
                     onChange={(e) => setResponseA(e.target.value)} />
                 <br />
 
                 <label>Escribe aquí la opción B:</label>
-                <input type="text" required
+                <input type="text"
                     required
                     value={resB}
                     onChange={(e) => setResponseB(e.target.value)} />
                 <br />
                 <label>Escribe aquí la opción c:</label>
-                <input type="text" required
+                <input type="text"
                     required
                     value={resC}
                     onChange={(e) => setResponseC(e.target.value)} />
                 <br />
                 <label>Escribe aquí la opción D:</label>
-                <input type="text" required
+                <input type="text"
                     required
                     value={resD}
                     onChange={(e) => setResponseD(e.target.value)} />

@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react"
+import { useContext } from "react"
 import QuizContext from "../Provider/Contexts"
 import { connect } from "react-redux"
 import { incrementarRonda } from "../redux/actionCreators"
@@ -6,11 +6,11 @@ import { incrementarRonda } from "../redux/actionCreators"
 
 const Question = (question) => {
     const { pregunta, opcionA, opcionB, opcionC, opcionD, respuesta, siguienteRonda, rondaCounter } = question
-    const { gameState, setGameState } = useContext(QuizContext)
+    const { setGameState } = useContext(QuizContext)
 
     const validarRespuesta = (opcionSeleccionada) => {
 
-        if (opcionSeleccionada == respuesta && rondaCounter <= 5) {
+        if (opcionSeleccionada === respuesta && rondaCounter <= 5) {
             siguienteRonda()
         } else {
             setGameState("final")

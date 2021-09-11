@@ -12,7 +12,7 @@ function Menuprincipal(props) {
 
 
 
-    const { gameState, setGameState } = useContext(QuizContext)
+    const { setGameState } = useContext(QuizContext)
 
     const submit = (e) => {
         e.preventDefault()

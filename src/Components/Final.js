@@ -5,7 +5,7 @@ import { connect } from "react-redux"
 import { reiniciarStorage } from "../redux/actionCreators"
 
 function Final(props) {
-    const { gameState, setGameState } = useContext(QuizContext)
+    const { setGameState } = useContext(QuizContext)
     return (
         <div className="menu">
             <h2>Jugador: {props.nombreJugador}</h2>

@@ -7,13 +7,13 @@ import { connect } from 'react-redux';
 const Quiz = props => {
     const getRandomInt = max => Math.floor(Math.random() * max)
     const getQuestion = (allQuestion, round) => {
-        let preguntasDeRonda = allQuestion.filter(q => q.dificultad == round)
+        let preguntasDeRonda = allQuestion.filter(q => q.dificultad === round)
         let ids = preguntasDeRonda.map(x => x.id)
         let randomId = getRandomInt(ids.length)
         return preguntasDeRonda[randomId]
     }
     const [questions, setQuestion] = useState([])
-    const { gameState, setGameState } = useContext(QuizContext)
+    const { setGameState } = useContext(QuizContext)
     useEffect(() => {
         fetch("http://localhost:3001/preguntasDefault")
             .then(response => response.json())

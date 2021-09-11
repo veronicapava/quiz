@@ -4,7 +4,7 @@ import "../index.css"
 
 
 function Tablero() {
-    const { gameState, setGameState } = useContext(QuizContext)
+    const { setGameState } = useContext(QuizContext)
     return (
         <div className="tablero">
             <h2>tablero de jugadores aca</h2>

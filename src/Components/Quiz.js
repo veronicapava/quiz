@@ -2,26 +2,18 @@ import { useState, useEffect, useContext } from "react"
 import Question from "../Partbypart/Question"
 import QuizContext from "../Provider/Contexts"
 import Header from "./Header"
+import { connect } from 'react-redux';
 
-
-function Quiz() {
-
-    let [round, updateRound] = useState(1)
-
+const Quiz = props => {
     const getRandomInt = max => Math.floor(Math.random() * max)
-
     const getQuestion = (allQuestion, round) => {
         let preguntasDeRonda = allQuestion.filter(q => q.dificultad == round)
         let ids = preguntasDeRonda.map(x => x.id)
         let randomId = getRandomInt(ids.length)
         return preguntasDeRonda[randomId]
     }
-
-
     const [questions, setQuestion] = useState([])
     const { gameState, setGameState } = useContext(QuizContext)
-
-
     useEffect(() => {
         fetch("http://localhost:3001/preguntas")
             .then(response => response.json())
@@ -29,17 +21,22 @@ function Quiz() {
     }, [])
 
 
+    if (props.rondaCounter > 5) {
+        return (
+            <>
+                {setGameState("final")}
+            </>)
+    }
+
+
     return (
         <>
             <div className="quiz">
-                <Header
-                    round={round}
-                />
+                <Header />
 
                 <Question
-                    {...getQuestion(questions, round)}
+                    {...getQuestion(questions, props.rondaCounter)}
                 />
-
 
                 < button onClick={() => {
                     setGameState("final")
@@ -50,4 +47,10 @@ function Quiz() {
     )
 }
 
-export default Quiz;
+const mapStateToProps = state => ({
+    rondaCounter: state.ronda
+})
+const mapDispatchToProps = () => ({})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Quiz);

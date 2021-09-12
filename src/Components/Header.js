@@ -5,7 +5,7 @@ const Header = props => {
         <header>
             <ul>
                 <h1>Quiz</h1>
-                <h1>Ronda {props.rondaCounter} </h1>
+                <h1>Ronda: {props.rondaCounter} </h1>
                 <h3>Jugador:{props.nombreJugador} </h3>
                 <h4>Score: ${props.puntosCounter}</h4>
             </ul>

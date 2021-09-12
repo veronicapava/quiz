@@ -1,4 +1,4 @@
-import { INCREMENTAR_RONDA, REINICIAR, GUARDANDO_NOMBRE, CAMBIAR_TIPO_PREGUNTAS } from "./actions";
+import { INCREMENTAR_RONDA, REINICIAR, GUARDAR_NOMBRE, CAMBIAR_TIPO_PREGUNTAS } from "./actions";
 
 const incrementarRonda = () => ({
     type: INCREMENTAR_RONDA,
@@ -11,7 +11,7 @@ const reiniciarStorage = () => ({
 })
 
 const guardandoNombre = nombre => ({
-    type: GUARDANDO_NOMBRE,
+    type: GUARDAR_NOMBRE,
     data: nombre
 })
 

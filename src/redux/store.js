@@ -1,5 +1,5 @@
 import { createStore } from 'redux'
-import { INCREMENTAR_RONDA, REINICIAR, GUARDANDO_NOMBRE, CAMBIAR_TIPO_PREGUNTAS } from './actions'
+import { INCREMENTAR_RONDA, REINICIAR, GUARDAR_NOMBRE, CAMBIAR_TIPO_PREGUNTAS } from './actions'
 
 const initialStore = {
     ronda: 1,
@@ -25,7 +25,7 @@ const rootReducer = (state = initialStore, action) => {
         }
     }
 
-    if (action.type === GUARDANDO_NOMBRE) {
+    if (action.type === GUARDAR_NOMBRE) {
         return {
             ...state,
             nombre: action.data

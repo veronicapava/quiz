@@ -1,18 +1,19 @@
 import { connect } from 'react-redux';
 import { PREMIOS } from "../constantes"
 import { asignadorPremios } from "../utils"
+import "../styles/styles.scss"
+
 
 const Header = props => {
     return (
-        <header>
-            <ul>
-                <h1>Quiz</h1>
-                <h1>Ronda: {props.rondaCounter} </h1>
-                <h3>Jugador:{props.nombreJugador} </h3>
-                <h4>Score: ${props.puntosCounter}</h4>
-                <h4>En Juego: ${asignadorPremios(props.rondaCounter, PREMIOS)}</h4>
-            </ul>
-        </header>
+        <div className="ed-grid row-gap  s-cross-center s-bg-black s-pxy-2 s-mb-2">
+            <header className="ed-grid s-grid-4  s-bg-black row-gap">
+                <h3 className="lg-to-center color light-color">Ronda: {props.rondaCounter} </h3>
+                <h3 className="lg-to-center color light-color">Jugador: {props.nombreJugador} </h3>
+                <h3 className="lg-to-center color light-color">Score: ${props.puntosCounter}</h3>
+                <h3 className="lg-to-center color light-color">En Juego: ${asignadorPremios(props.rondaCounter, PREMIOS)}</h3>
+            </header>
+        </div>
     )
 }
 

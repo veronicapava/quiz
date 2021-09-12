@@ -14,18 +14,18 @@ function App() {
 
   return (
     <Provider store={store}>
-      <div className="app">
-        <h1>Preguntas y Respuestas</h1>
-
-        <QuizContext.Provider value={{ gameState, setGameState }}>
-          {gameState === "menu" && <Menuprincipal />}
-          {gameState === "quiz" && <Quiz />}
-          {gameState === "final" && <Final />}
-          {gameState === "addquestion" && <AddQuestion />}
-          {gameState === "tablero" && <Tablero />}
-        </QuizContext.Provider>
-
-      </div>
+      <main>
+        <h1 className="main-header center s-pxy-1 s-mb-2"> Preguntas y Respuestas</h1>
+        <div>
+          <QuizContext.Provider value={{ gameState, setGameState }}>
+            {gameState === "menu" && <Menuprincipal />}
+            {gameState === "quiz" && <Quiz />}
+            {gameState === "final" && <Final />}
+            {gameState === "addquestion" && <AddQuestion />}
+            {gameState === "tablero" && <Tablero />}
+          </QuizContext.Provider>
+        </div>
+      </main>
     </Provider>
   );
 }

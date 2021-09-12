@@ -4,7 +4,7 @@ import QuizContext from "../Provider/Contexts"
 import Header from "./Header"
 import { connect } from 'react-redux';
 import { getQuestionByDificcult } from "../utils"
-
+import "../styles/styles.scss"
 
 
 const Quiz = props => {
@@ -31,14 +31,14 @@ const Quiz = props => {
 
     return (
         <>
-            <div className="quiz">
+            <div className="container">
                 <Header />
 
                 <Question
                     {...getQuestionByDificcult(questions, props.rondaCounter)}
                 />
 
-                < button onClick={() => {
+                < button className="center m-to-center button dark-color" onClick={() => {
                     setGameState("final")
                 }} > Finalizar juego</button>
             </div>

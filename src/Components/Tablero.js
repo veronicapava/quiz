@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react"
 import QuizContext from "../Provider/Contexts"
-import "../index.css"
+import "../styles/styles.scss"
+
 
 
 function Tablero() {
@@ -16,9 +17,8 @@ function Tablero() {
             .then(data => setResultado(data))
     }, [])
     return (
-        <div className="menu">
-            <h2>Tablero de jugadores aca</h2>
-            <table>
+        <div className="ed-grid s-grid-3 s-pxy-3">
+            <table className="table--dark s-cols-3">
                 <tbody>
                     <tr>
                         <th>Jugador</th>
@@ -40,7 +40,7 @@ function Tablero() {
 
 
 
-            <button
+            <button className="button dark-color s-cols-1 s-x-2"
                 onClick={() => {
                     setGameState("menu")
                 }}>Atrás</button>

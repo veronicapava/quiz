@@ -25,7 +25,6 @@ const AddQuestion = (props) => {
 
     const [posteando, setPostingState] = useState(false)
 
-
     const postear = (e) => {
         e.preventDefault()
         const preguntas = {
@@ -63,102 +62,105 @@ const AddQuestion = (props) => {
             let conteoPreguntas = contadorDePreguntas(preguntasGuardadas, Number(dificultad))
             setPreguntasGuardadas(conteoPreguntas)
         })
-
     }
 
 
     return (
-        <div className="menu">
+        <div className="ed-grid s-grid-4 s-pxy-3 s-bg-black">
+            <div class="s-cols-3 " >
+                <form onSubmit={postear}>
 
-            <form onSubmit={postear}>
+                    <div className="ed-container " >
+                        <div class="ed-item form__item">
+                            <label className="color light-color">Escribe aquí la pregunta: </label>
+                            <input className="ed-item" type="text" required value={pregunta}
+                                onChange={(e) => setPregunta(e.target.value)} />
+                        </div>
 
-                <label>Escribe aquí la pregunta:</label>
-                <input type="text" required value={pregunta}
-                    onChange={(e) => setPregunta(e.target.value)} />
-                <br />
+                        <div class="ed-item form__item">
+                            <label className="color light-color">Escribe aquí la opción A: </label>
+                            <input className="recuadro" type="text" required value={resA}
+                                onChange={(e) => setResponseA(e.target.value)} />
+                        </div>
 
-                <label>Escribe aquí la opción A:</label>
-                <input type="text" required value={resA}
-                    onChange={(e) => setResponseA(e.target.value)} />
-                <br />
+                        <div class="ed-item form__item">
+                            <label className="color light-color">Escribe aquí la opción B: </label>
+                            <input className="recuadro" type="text" required value={resB}
+                                onChange={(e) => setResponseB(e.target.value)} />
+                        </div>
 
-                <label>Escribe aquí la opción B:</label>
-                <input type="text" required value={resB}
-                    onChange={(e) => setResponseB(e.target.value)} />
-                <br />
-                <label>Escribe aquí la opción c:</label>
-                <input type="text" required value={resC}
-                    onChange={(e) => setResponseC(e.target.value)} />
-                <br />
-                <label>Escribe aquí la opción D:</label>
-                <input type="text" required value={resD}
-                    onChange={(e) => setResponseD(e.target.value)} />
-                <br />
+                        <div class="ed-item form__item">
+                            <label className="color light-color">Escribe aquí la opción c: </label>
+                            <input className="recuadro" type="text" required value={resC}
+                                onChange={(e) => setResponseC(e.target.value)} />
+                        </div>
 
-                <br />
-                <label>Marque la respuesta correcta:</label>
-                <select value={respuesta}
-                    onChange={(e) => setCorrecta(e.target.value)}
-                >
-                    <option value="opcionA"> Opción A</option>
-                    <option value="opcionB"> Opción B</option>
-                    <option value="opcionC"> Opción C</option>
-                    <option value="opcionD"> Opción D</option>
-                </select>
+                        <div class="ed-item form__item">
+                            <label className="color light-color">Escribe aquí la opción D: </label>
+                            <input className="recuadro" type="text" required value={resD}
+                                onChange={(e) => setResponseD(e.target.value)} />
+                        </div>
 
-                <br />
-                <br />
-                <label>Seleccione la dificultad de esta pregunta</label>
-                <select value={dificultad}
-                    onChange={(e) => setDificultad(e.target.value)}
-                >
-                    <option value="1"> Nivel 1</option>
-                    <option value="2"> Nivel 2</option>
-                    <option value="3"> Nivel 3</option>
-                    <option value="4"> Nivel 4</option>
-                    <option value="5"> Nivel 5</option>
-                </select>
+                        <div class="ed-item l-30 form__item">
+                            <label className="color light-color">Marque la respuesta correcta</label>
+                            <select value={respuesta} onChange={(e) => setCorrecta(e.target.value)} >
+                                <option value="opcionA"> Opción A</option>
+                                <option value="opcionB"> Opción B</option>
+                                <option value="opcionC"> Opción C</option>
+                                <option value="opcionD"> Opción D</option>
+                            </select>
+                        </div>
 
-                <br />
-                <br />
+                        <div class="ed-item l-30 form__item">
+                            <label className="color light-color">Seleccione la dificultad</label>
+                            <select value={dificultad} onChange={(e) => setDificultad(e.target.value)}>
+                                <option value="1"> Nivel 1</option>
+                                <option value="2"> Nivel 2</option>
+                                <option value="3"> Nivel 3</option>
+                                <option value="4"> Nivel 4</option>
+                                <option value="5"> Nivel 5</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label className="color light-color">Mínimo {MIN_PREGUNTAS} preguntas por dificultad</label>
+                            {!posteando && <button className="button dark-color">Guardar pregunta</button>}
+                            {posteando && <button className="button dark-color" disabled>Guardando pregunta...</button>}
+                        </div>
+                    </div>
+                </form>
 
-                {!posteando && <button>Guardar pregunta</button>}
-                {posteando && <button disabled>Guardando pregunta...</button>}
-
-            </form>
-
-            <br />
-
-
-            {
-                (d1 >= MIN_PREGUNTAS && d2 >= MIN_PREGUNTAS && d3 >= MIN_PREGUNTAS && d4 >= MIN_PREGUNTAS && d5 >= MIN_PREGUNTAS)   //d1 es el numero de preguntas de dificulta 1, etc
-                    ? < button onClick={() => {
-                        props.cambiarTipoDePreguntas(true)
+                <div className="ed-grid s-grid-2 s-row-2 dark-color">
+                    < button className="button s-rows-1 lg-55 " onClick={() => {
                         setGameState("menu")
-                    }} >No mas preguntas</button>
-                    : <>
-                        < button disabled >No mas preguntas</button>
-                        <label>Mínimo {MIN_PREGUNTAS} preguntas por dificultad 😢</label>
-                    </>
-            }
+                        props.cambiarTipoDePreguntas(false)
+                        alert("¡Se van a utilizar las preguntas por defecto!")
+                        // alert("Las preguntas que escribistes ya fueron guardadas, vuelve aqui para añadir más luego")
+                    }
+                    } > Cancelar </button>
 
+                    {
+                        (d1 >= MIN_PREGUNTAS && d2 >= MIN_PREGUNTAS && d3 >= MIN_PREGUNTAS && d4 >= MIN_PREGUNTAS && d5 >= MIN_PREGUNTAS)   //d1 es el numero de preguntas de dificulta 1, etc
+                            ? < button className="button dark-color" onClick={() => {
+                                props.cambiarTipoDePreguntas(true)
+                                setGameState("menu")
+                            }} >Ya agregué todas las preguntas</button>
+                            : <div>
+                                < button className="button disabled ghost dark-color" disabled >Ya agregué todas las preguntas</button>
+                            </div>
+                    }
+                </div>
+            </div>
 
-            < button onClick={() => {
-                setGameState("menu")
-                props.cambiarTipoDePreguntas(false)
-                alert("Se van a utilizar las preguntas por defecto!")
-                // alert("Las preguntas que escribistes ya fueron guardadas, vuelve aqui para añadir más luego")
-            }
-            } > Cancelar </button>
-
-            <aside>
-                <h4>Inventario de Preguntas</h4>
-                <label>Dificultad 1: {d1}</label>
-                <label>Dificultad 2: {d2}</label>
-                <label>Dificultad 3: {d3}</label>
-                <label>Dificultad 4: {d4}</label>
-                <label>Dificultad 5: {d5}</label>
-                <label> Total: {total}</label>
+            <aside >
+                <h3 className=" color light-color">Preguntas agregadas:</h3>
+                <div >
+                    <h4 className=" color light-color">Dificultad 1: {d1} </h4>
+                    <h4 className=" color light-color">Dificultad 2: {d2} </h4>
+                    <h4 className=" color light-color">Dificultad 3: {d3} </h4>
+                    <h4 className=" color light-color">Dificultad 4: {d4} </h4>
+                    <h4 className=" color light-color">Dificultad 5: {d5} </h4>
+                    <h3 className=" color light-color"> Total: {total}</h3>
+                </div>
             </aside>
         </div>
     )
@@ -171,6 +173,5 @@ const mapDispatchToProps = dispatch => ({
         dispatch(irPreguntasPersonalizadas(tipo))
     }
 })
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddQuestion);

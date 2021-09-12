@@ -1,6 +1,7 @@
 import { useContext, useState } from "react"
 import QuizContext from "../Provider/Contexts"
-import "../index.css"
+import "../styles/styles.scss"
+
 import { connect } from "react-redux"
 import { guardandoNombre } from "../redux/actionCreators"
 
@@ -17,30 +18,38 @@ function Menuprincipal(props) {
     }
 
     return (
-        <div className="menu">
-            <button onClick={() => { setGameState("addquestion") }} >Crear preguntas</button>
-            <button onClick={() => { setGameState("tablero") }} >Tablero de ganadores</button>
-            <br />
-            <form onSubmit={submit}>
+        <div className="ed-grid s-row s-border s-cross-center s-pxy-2 lg-pxy-2 s-radius s-bg-black s-shadow-bottom row-gap">
 
-                <input type="text"
-                    required
-                    placeholder="Nombre del jugador"
-                    value={nombre}
-                    onChange={
-                        (e) => {
-                            setSubmit(false)
-                            setNombre(e.target.value)
+            <div className="topbar  center dark-color">
+                <button className="button" onClick={() => { setGameState("addquestion") }} >Crear preguntas</button>
+                <button className="button" onClick={() => { setGameState("tablero") }} >Tablero de ganadores</button>
+            </div>
+
+            <div className=" ed-grid center m-to-center m-60 lg-30">
+                <form className="form"
+                    onSubmit={submit}>
+
+                    <input
+                        className="form__item center"
+                        type="text"
+                        required
+                        placeholder="Nombre del jugador"
+                        value={nombre}
+                        onChange={
+                            (e) => {
+                                setSubmit(false)
+                                setNombre(e.target.value)
+                            }
                         }
-                    }
-                />
+                    />
 
-                <button>Guardar nombre</button>
-                <br />
-            </ form>
+                    <button className="button lg-55 dark-color">Guardar nombre</button>
 
-            {submitEstado && <button onClick={() => { setGameState("quiz") }} > Empezar Juego </button>}
-            {!submitEstado && <button disabled>Empezar Juego</button>}
+                </ form>
+
+                {submitEstado && <button className="button m-to-center  lg-55  dark-color" onClick={() => { setGameState("quiz") }} > Empezar Juego </button>}
+                {!submitEstado && <button className="button m-to-center   lg-55  disabled dark-color" disabled>Empezar Juego</button>}
+            </div>
         </div>
     )
 }

@@ -49,6 +49,6 @@ Ya en esta sección se ejecuta el juego con las preguntas guardadas por el jugad
 
 ### Final del juego
 
-En esta pantalla verás los puntos obtenidos en la partida terminada..
+En esta pantalla verás los puntos obtenidos en la partida terminada.
 
 <img src="./Readmeimg/score.png"/><br/>

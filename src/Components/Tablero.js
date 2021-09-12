@@ -19,21 +19,23 @@ function Tablero() {
         <div className="tablero">
             <h2>Tablero de jugadores aca</h2>
             <table>
-                <tr>
-                    <td>Jugador</td>
-                    <td>Ronda</td>
-                    <td>Score</td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <th>Jugador</th>
+                        <th>Ronda</th>
+                        <th>Score</th>
+                    </tr>
 
-                {
-                    resultados.map(r =>
-                        <tr>
-                            <td>{r.nombreJugador}</td>
-                            <td>{r.puntos}</td>
-                            <td>{r.ronda}</td>
-                        </tr>
-                    )
-                }
+                    {
+                        resultados.map(r =>
+                            <tr key={r.id}>
+                                <td>{r.nombreJugador}</td>
+                                <td>{r.puntos}</td>
+                                <td>{r.ronda}</td>
+                            </tr>
+                        )
+                    }
+                </tbody>
             </table>
 
 

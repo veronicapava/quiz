@@ -21,3 +21,9 @@ export const contadorDePreguntas = (preguntas, dificultad) => {
 
     return { d1, d2, d3, d4, d5, total }
 }
+
+
+export const asignadorPremios = (ronda, PREMIOS) => {
+    let premioDeRonda = PREMIOS.filter(p => p.ronda == ronda)
+    return premioDeRonda[0].dinero
+}

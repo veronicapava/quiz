@@ -2,23 +2,23 @@ export const MIN_PREGUNTAS = 5
 
 export const PREMIOS = [
     {
-        dificultad: 1,
-        premio: 100
+        ronda: 1,
+        dinero: 100
     },
     {
-        dificultad: 2,
-        premio: 200
+        ronda: 2,
+        dinero: 200
     },
     {
-        dificultad: 3,
-        premio: 500
+        ronda: 3,
+        dinero: 500
     },
     {
-        dificultad: 4,
-        premio: 2000
+        ronda: 4,
+        dinero: 2000
     },
     {
-        dificultad: 5,
-        premio: 50000
+        ronda: 5,
+        dinero: 50000
     }
 ]

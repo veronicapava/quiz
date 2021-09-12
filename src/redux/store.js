@@ -1,5 +1,7 @@
 import { createStore } from 'redux'
 import { INCREMENTAR_RONDA, REINICIAR, GUARDAR_NOMBRE, CAMBIAR_TIPO_PREGUNTAS } from './actions'
+import { PREMIOS } from "../constantes"
+import { asignadorPremios } from "../utils"
 
 const initialStore = {
     ronda: 1,
@@ -13,8 +15,8 @@ const rootReducer = (state = initialStore, action) => {
     if (action.type === INCREMENTAR_RONDA && state.ronda < 6) {
         return {
             ...state,
+            puntos: state.puntos + asignadorPremios(state.ronda, PREMIOS),
             ronda: state.ronda + 1,
-            puntos: state.puntos + 2
         }
     }
 

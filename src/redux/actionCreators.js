@@ -1,4 +1,4 @@
-import { INCREMENTAR_RONDA, REINICIAR, GUARDAR_NOMBRE, CAMBIAR_TIPO_PREGUNTAS } from "./actions";
+import { INCREMENTAR_RONDA, REINICIAR, GUARDAR_NOMBRE, CAMBIAR_TIPO_PREGUNTAS, PERDER_PUNTOS } from "./actions";
 
 const incrementarRonda = () => ({
     type: INCREMENTAR_RONDA,
@@ -20,5 +20,9 @@ const irPreguntasPersonalizadas = tipo => ({
     data: tipo
 })
 
+const perderPuntos = () => ({
+    type: PERDER_PUNTOS,
+    data: {}
+})
 
-export { incrementarRonda, reiniciarStorage, guardandoNombre, irPreguntasPersonalizadas }
+export { incrementarRonda, reiniciarStorage, guardandoNombre, irPreguntasPersonalizadas, perderPuntos }

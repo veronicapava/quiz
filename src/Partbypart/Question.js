@@ -1,10 +1,10 @@
 import { useContext } from "react"
 import QuizContext from "../Provider/Contexts"
 import { connect } from "react-redux"
-import { incrementarRonda } from "../redux/actionCreators"
+import { incrementarRonda, perderPuntos } from "../redux/actionCreators"
 
-const Question = (question) => {
-    const { pregunta, opcionA, opcionB, opcionC, opcionD, respuesta, siguienteRonda, rondaCounter } = question
+const Question = (props) => {
+    const { pregunta, opcionA, opcionB, opcionC, opcionD, respuesta, siguienteRonda, rondaCounter, puntosPerdidos } = props
     const { setGameState } = useContext(QuizContext)
 
     const validarRespuesta = (opcionSeleccionada) => {
@@ -12,6 +12,7 @@ const Question = (question) => {
         if (opcionSeleccionada === respuesta && rondaCounter <= 5) {
             siguienteRonda()
         } else {
+            puntosPerdidos()
             setGameState("final")
         }
     }
@@ -36,6 +37,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     siguienteRonda() {
         dispatch(incrementarRonda())
+    },
+    puntosPerdidos() {
+        dispatch(perderPuntos())
     }
 })
 

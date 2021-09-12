@@ -61,7 +61,7 @@ const AddQuestion = (props) => {
             body: JSON.stringify(preguntas)
         }).then(() => {
             resetarInputs()
-            props.cambiarTipoDePreguntas()
+            props.cambiarTipoDePreguntas(true)
             setPostingState(false)
 
             let conteoPreguntas = contadorDePreguntas(Number(dificultad))
@@ -131,9 +131,24 @@ const AddQuestion = (props) => {
 
             </form>
 
+            <br />
 
-            {preguntasGuardadas.total > 25 && < button onClick={() => { setGameState("menu") }} >No mas preguntas</button>}
-            < button onClick={() => { setGameState("menu") }} > Cancelar </button>
+            {preguntasGuardadas.total < 5 && < button disabled >No mas preguntas</button>}
+            {preguntasGuardadas.total < 5 && <label>Mínimo 5 preguntas por dificultad 😢</label>}
+            {preguntasGuardadas.total >= 5 && < button onClick={() => {
+                props.cambiarTipoDePreguntas(true)
+                setGameState("menu")
+
+            }}
+            >No mas preguntas</button>}
+
+            < button onClick={() => {
+                setGameState("menu")
+                props.cambiarTipoDePreguntas(false)
+                alert("Se van a utilizar las preguntas por defecto!")
+                // alert("Las preguntas que escribistes ya fueron guardadas, vuelve aqui para añadir más luego")
+            }
+            } > Cancelar </button>
 
             <aside>
                 <h4>Inventario de Preguntas</h4>
@@ -154,8 +169,8 @@ const AddQuestion = (props) => {
 const mapStateToProps = state => ({})
 
 const mapDispatchToProps = dispatch => ({
-    cambiarTipoDePreguntas() {
-        dispatch(irPreguntasPersonalizadas())
+    cambiarTipoDePreguntas(tipo) {
+        dispatch(irPreguntasPersonalizadas(tipo))
     }
 })
 

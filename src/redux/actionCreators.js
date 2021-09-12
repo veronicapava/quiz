@@ -15,9 +15,9 @@ const guardandoNombre = nombre => ({
     data: nombre
 })
 
-const irPreguntasPersonalizadas = () => ({
+const irPreguntasPersonalizadas = tipo => ({
     type: CAMBIAR_TIPO_PREGUNTAS,
-    data: {}
+    data: tipo
 })
 
 

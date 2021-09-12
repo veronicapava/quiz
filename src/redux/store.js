@@ -3,7 +3,9 @@ import { INCREMENTAR_RONDA, REINICIAR, GUARDANDO_NOMBRE, CAMBIAR_TIPO_PREGUNTAS 
 
 const initialStore = {
     ronda: 1,
-    puntos: 0
+    puntos: 0,
+    nombre: "",
+    preguntasPersonalizadas: false
 }
 
 const rootReducer = (state = initialStore, action) => {
@@ -33,7 +35,7 @@ const rootReducer = (state = initialStore, action) => {
     if (action.type === CAMBIAR_TIPO_PREGUNTAS) {
         return {
             ...state,
-            preguntasPersonalizadas: true
+            preguntasPersonalizadas: action.data
         }
     }
 

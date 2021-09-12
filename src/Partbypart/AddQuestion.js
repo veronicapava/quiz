@@ -133,14 +133,23 @@ const AddQuestion = (props) => {
 
             <br />
 
-            {preguntasGuardadas.total < 5 && < button disabled >No mas preguntas</button>}
-            {preguntasGuardadas.total < 5 && <label>Mínimo 5 preguntas por dificultad 😢</label>}
-            {preguntasGuardadas.total >= 5 && < button onClick={() => {
-                props.cambiarTipoDePreguntas(true)
-                setGameState("menu")
 
-            }}
-            >No mas preguntas</button>}
+            {
+                (preguntasGuardadas.d1 >= 5
+                    && preguntasGuardadas.d2 >= 5
+                    && preguntasGuardadas.d3 >= 5
+                    && preguntasGuardadas.d4 >= 5
+                    && preguntasGuardadas.d5 >= 5)
+                    ? < button onClick={() => {
+                        props.cambiarTipoDePreguntas(true)
+                        setGameState("menu")
+                    }} >No mas preguntas</button>
+                    : <>
+                        < button disabled >No mas preguntas</button>
+                        <label>Mínimo 5 preguntas por dificultad 😢</label>
+                    </>
+            }
+
 
             < button onClick={() => {
                 setGameState("menu")

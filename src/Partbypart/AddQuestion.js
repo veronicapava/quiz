@@ -3,6 +3,7 @@ import QuizContext from "../Provider/Contexts"
 import { connect } from "react-redux"
 import { irPreguntasPersonalizadas } from "../redux/actionCreators"
 import { contadorDePreguntas } from "../utils"
+import { MIN_PREGUNTAS } from "../constantes"
 
 const AddQuestion = (props) => {
 
@@ -130,14 +131,14 @@ const AddQuestion = (props) => {
 
 
             {
-                (d1 >= 5 && d2 >= 5 && d3 >= 5 && d4 >= 5 && d5 >= 5)   //d1 es el numero de preguntas de dificulta 1, etc
+                (d1 >= MIN_PREGUNTAS && d2 >= MIN_PREGUNTAS && d3 >= MIN_PREGUNTAS && d4 >= MIN_PREGUNTAS && d5 >= MIN_PREGUNTAS)   //d1 es el numero de preguntas de dificulta 1, etc
                     ? < button onClick={() => {
                         props.cambiarTipoDePreguntas(true)
                         setGameState("menu")
                     }} >No mas preguntas</button>
                     : <>
                         < button disabled >No mas preguntas</button>
-                        <label>Mínimo 5 preguntas por dificultad 😢</label>
+                        <label>Mínimo {MIN_PREGUNTAS} preguntas por dificultad 😢</label>
                     </>
             }
 

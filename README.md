@@ -14,8 +14,9 @@ Para instalar todas las dependencias del proyecto
 
 Corre la aplicación, luego abre [http://localhost:3000](http://localhost:3000) en el navegador.
 
-### `yarn run startjson `
+### `yarn run startjson`
 
+Corre este comando en otra terminal.
 Simula una base de datos en local. Ir al navegador [http://localhost:3001](http://localhost:3001). Se tienen 3 endpoints: `preguntas` , `preguntasDefault` y `puntuaciones`
 
 ## Cómo jugar

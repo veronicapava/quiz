@@ -3,15 +3,12 @@ import Question from "../Partbypart/Question"
 import QuizContext from "../Provider/Contexts"
 import Header from "./Header"
 import { connect } from 'react-redux';
+import { getQuestionByDificcult } from "../utils"
+
+
 
 const Quiz = props => {
-    const getRandomInt = max => Math.floor(Math.random() * max)
-    const getQuestion = (allQuestion, round) => {
-        let preguntasDeRonda = allQuestion.filter(q => q.dificultad === round)
-        let ids = preguntasDeRonda.map(x => x.id)
-        let randomId = getRandomInt(ids.length)
-        return preguntasDeRonda[randomId]
-    }
+
     const [questions, setQuestion] = useState([])
     const { setGameState } = useContext(QuizContext)
 
@@ -38,7 +35,7 @@ const Quiz = props => {
                 <Header />
 
                 <Question
-                    {...getQuestion(questions, props.rondaCounter)}
+                    {...getQuestionByDificcult(questions, props.rondaCounter)}
                 />
 
                 < button onClick={() => {

@@ -7,11 +7,7 @@ import { guardandoNombre } from "../redux/actionCreators"
 
 function Menuprincipal(props) {
     const [nombre, setNombre] = useState("")
-
     const [submitEstado, setSubmit] = useState(false)
-
-
-
     const { setGameState } = useContext(QuizContext)
 
     const submit = (e) => {
@@ -19,8 +15,6 @@ function Menuprincipal(props) {
         setSubmit(true)
         props.guardarNombre(nombre)
     }
-
-
 
     return (
         <div className="menu">
@@ -45,17 +39,13 @@ function Menuprincipal(props) {
                 <br />
             </ form>
 
-
-
             {submitEstado && <button onClick={() => { setGameState("quiz") }} > Empezar Juego </button>}
             {!submitEstado && <button disabled>Empezar Juego</button>}
-
         </div>
     )
 }
-const mapStateToProps = state => ({
+const mapStateToProps = state => ({})
 
-})
 const mapDispatchToProps = dispatch => ({
     guardarNombre(nombre) {
         dispatch(guardandoNombre(nombre))

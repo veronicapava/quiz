@@ -6,14 +6,15 @@ import { reiniciarStorage } from "../redux/actionCreators"
 
 function Final(props) {
     const { setGameState } = useContext(QuizContext)
-    const { nombreJugador, puntosCounter, rondaCounter } = props
+    const { nombreJugador, contadorPuntos, contadorRonda } = props
 
     useEffect(() => {
         const puntuacion = {
             nombreJugador,
-            puntos: puntosCounter,
-            ronda: rondaCounter > 5 ? "Finalista" : rondaCounter
+            puntos: contadorPuntos,
+            ronda: contadorRonda > 5 ? "Finalista" : contadorRonda
         }
+
         const baseUrl = "http://localhost:3001/"
         const endPoint = "puntuaciones"
 
@@ -26,7 +27,7 @@ function Final(props) {
     return (
         <div className="menu">
             <h2>Jugador: {nombreJugador}</h2>
-            <h2>Score: ${puntosCounter}</h2>
+            <h2>Score: ${contadorPuntos}</h2>
             <button
                 onClick={() => {
                     setGameState("menu")
@@ -37,8 +38,8 @@ function Final(props) {
 }
 
 const mapStateToProps = state => ({
-    rondaCounter: state.ronda,
-    puntosCounter: state.puntos,
+    contadorRonda: state.ronda,
+    contadorPuntos: state.puntos,
     nombreJugador: state.nombre
 })
 

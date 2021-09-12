@@ -2,6 +2,7 @@ import { useState, useContext } from "react"
 import QuizContext from "../Provider/Contexts"
 import { connect } from "react-redux"
 import { irPreguntasPersonalizadas } from "../redux/actionCreators"
+import { contadorDePreguntas } from "../utils"
 
 const AddQuestion = (props) => {
 
@@ -10,6 +11,8 @@ const AddQuestion = (props) => {
     const preguntasGuardadasCero = { d1: 0, d2: 0, d3: 0, d4: 0, d5: 0, total: 0 }  //d1 corresponde a dificulta 1, etc
 
     const [preguntasGuardadas, setPreguntasGuardadas] = useState(preguntasGuardadasCero)
+
+    let { d1, d2, d3, d4, d5, total } = preguntasGuardadas
 
     const [pregunta, setPregunta] = useState("")
     const [resA, setResponseA] = useState("")
@@ -35,6 +38,7 @@ const AddQuestion = (props) => {
         }
 
         setPostingState(true)
+
         const resetarInputs = () => {
             setPregunta("")
             setResponseA("")
@@ -45,15 +49,6 @@ const AddQuestion = (props) => {
             setDificultad("1")
         }
 
-        const contadorDePreguntas = (dif) => {
-            let d1 = dif === 1 ? preguntasGuardadas.d1 + 1 : preguntasGuardadas.d1
-            let d2 = dif === 2 ? preguntasGuardadas.d2 + 1 : preguntasGuardadas.d2
-            let d3 = dif === 3 ? preguntasGuardadas.d3 + 1 : preguntasGuardadas.d3
-            let d4 = dif === 4 ? preguntasGuardadas.d4 + 1 : preguntasGuardadas.d4
-            let d5 = dif === 5 ? preguntasGuardadas.d5 + 1 : preguntasGuardadas.d5
-            let total = d1 + d2 + d3 + d4 + d5
-            return { d1, d2, d3, d4, d5, total }
-        }
 
         fetch("http://localhost:3001/preguntas", {
             method: "POST",
@@ -64,16 +59,16 @@ const AddQuestion = (props) => {
             props.cambiarTipoDePreguntas(true)
             setPostingState(false)
 
-            let conteoPreguntas = contadorDePreguntas(Number(dificultad))
+            let conteoPreguntas = contadorDePreguntas(preguntasGuardadas, Number(dificultad))
             setPreguntasGuardadas(conteoPreguntas)
-
         })
 
     }
 
 
     return (
-        <>
+        <div className="menu">
+
             <form onSubmit={postear}>
 
                 <label>Escribe aquí la pregunta:</label>
@@ -135,11 +130,7 @@ const AddQuestion = (props) => {
 
 
             {
-                (preguntasGuardadas.d1 >= 5
-                    && preguntasGuardadas.d2 >= 5
-                    && preguntasGuardadas.d3 >= 5
-                    && preguntasGuardadas.d4 >= 5
-                    && preguntasGuardadas.d5 >= 5)
+                (d1 >= 5 && d2 >= 5 && d3 >= 5 && d4 >= 5 && d5 >= 5)   //d1 es el numero de preguntas de dificulta 1, etc
                     ? < button onClick={() => {
                         props.cambiarTipoDePreguntas(true)
                         setGameState("menu")
@@ -161,17 +152,14 @@ const AddQuestion = (props) => {
 
             <aside>
                 <h4>Inventario de Preguntas</h4>
-                <label>Dificultad 1: {preguntasGuardadas.d1}</label>
-                <label>Dificultad 2: {preguntasGuardadas.d2}</label>
-                <label>Dificultad 3: {preguntasGuardadas.d3}</label>
-                <label>Dificultad 4: {preguntasGuardadas.d4}</label>
-                <label>Dificultad 5: {preguntasGuardadas.d5}</label>
-                <label> Total: {preguntasGuardadas.total}</label>
+                <label>Dificultad 1: {d1}</label>
+                <label>Dificultad 2: {d2}</label>
+                <label>Dificultad 3: {d3}</label>
+                <label>Dificultad 4: {d4}</label>
+                <label>Dificultad 5: {d5}</label>
+                <label> Total: {total}</label>
             </aside>
-
-
-
-        </>
+        </div>
     )
 }
 
@@ -182,7 +170,6 @@ const mapDispatchToProps = dispatch => ({
         dispatch(irPreguntasPersonalizadas(tipo))
     }
 })
-
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddQuestion);

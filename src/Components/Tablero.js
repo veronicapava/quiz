@@ -16,7 +16,7 @@ function Tablero() {
             .then(data => setResultado(data))
     }, [])
     return (
-        <div className="tablero">
+        <div className="menu">
             <h2>Tablero de jugadores aca</h2>
             <table>
                 <tbody>
@@ -47,11 +47,6 @@ function Tablero() {
         </div>
     )
 }
-
-
-
-
-
 
 
 export default Tablero;

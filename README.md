@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+# Trivia de preguntas y respuestas
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto fue realizado con ReactJs para la prueba técnica de la Liga de Entrenamiento de Sofka.
 
-## Available Scripts
+## Cómo inicializar el proyecto
 
-In the project directory, you can run:
+Los comandos son:
+
+### `yarn install`
+
+Para instalar todas las dependencias del proyecto
 
 ### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Corre la aplicación, luego abre [http://localhost:3000](http://localhost:3000) en el navegador.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### `yarn run startjson `
 
-### `yarn test`
+Simula una base de datos en local. Ir al navegador [http://localhost:3001](http://localhost:3001). Se tienen 3 endpoints: `preguntas` , `preguntasDefault` y `puntuaciones`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Cómo jugar
 
-### `yarn build`
+El juego permite jugar con una serie de preguntas por defecto o con nuevas preguntas que usted puede añadir.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Pantalla principal
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Desde aquí puedes añadir preguntas, mirar el tablero de puntuaciones o jugar. Para jugar es obligatorio añadir un nombre.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<img src="./Readmeimg/Pantallaprincipal.png"/> <br/>
 
-### `yarn eject`
+### Crear preguntas
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Desde aquí puedes ingresar las preguntas, respuestas, dificultad y nivel para poder jugar. Son necesarias mínimo 5 preguntas por dificultad. Si se opime cancelar, se usan las preguntas por defecto.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<img src="./Readmeimg/escribirpreguntas.png"/><br/>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Tablero
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+En esta sección puedes ver todas las puntuaciones de los jugadores.
 
-## Learn More
+<img src="./Readmeimg/tablero.png"/><br/>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Juego
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Ya en esta sección se ejecuta el juego con las preguntas guardadas por el jugador o con las preguntas por defecto. Podrás retirarte ulilizando el botón de finalizar juego o terminar la partida ganando todas las rondas. Si te equivocas no ganáras nada.
 
-### Code Splitting
+<img src="./Readmeimg/juego.png"/><br/>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Final del juego
 
-### Analyzing the Bundle Size
+En esta pantalla verás los puntos obtenidos en la partida terminada.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<img src="./Readmeimg/score.png"/><br/>

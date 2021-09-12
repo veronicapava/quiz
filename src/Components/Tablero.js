@@ -30,8 +30,8 @@ function Tablero() {
                         resultados.map(r =>
                             <tr key={r.id}>
                                 <td>{r.nombreJugador}</td>
-                                <td>{r.puntos}</td>
                                 <td>{r.ronda}</td>
+                                <td>{r.puntos}</td>
                             </tr>
                         )
                     }
